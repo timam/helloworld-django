@@ -122,3 +122,9 @@ dmypy.json
 
 # env files
 .env
+
+# IDE Files
+.idea
+
+# Virtualenv
+venv
