@@ -1,11 +1,5 @@
 FROM python:3.6-slim
 
-ENV PYTHONUNBUFFERED 1
-ENV PORT 8000
-
-ENV TZ=Asia/Dhaka
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
 WORKDIR /app
 RUN mkdir src
 
@@ -16,6 +10,5 @@ RUN pip3 install -U pip
 RUN pip3 install -r requirements.txt && \
     apt-get --purge autoremove build-essential -y
 
-COPY src/ /app/src/
-
-EXPOSE $PORT
+COPY src /app/src/
+ENTRYPOINT ["python", "/app/src/parasite/manage.py","runserver"]
